@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Sahana ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ff4e50, #f9d423);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        background: white;
+        padding: 40px;
+        border-radius: 25px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        animation: pop 1.2s ease;
+    }
+
+    h1 {
+        color: #ff004f;
+        font-size: 38px;
+        animation: glow 2s infinite;
+    }
+
+    p {
+        font-size: 22px;
+        margin: 10px 0;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 14px 30px;
+        font-size: 20px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        background: #ff004f;
+        color: white;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .heart {
+        position: absolute;
+        color: red;
+        font-size: 20px;
+        animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(100vh) scale(0.5);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-10vh) scale(1.2);
+            opacity: 0;
+        }
+    }
+
+    @keyframes glow {
+        0%, 100% { text-shadow: 0 0 10px pink; }
+        50% { text-shadow: 0 0 25px red; }
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0); }
+        100% { transform: scale(1); }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>❤️ Happy Valentine's Day ❤️</h1>
+    <p>Dear <b>Sahana 💕</b></p>
+    <p>Nan jeevanadalli neene most special 😍</p>
+    <p>Will you be my Valentine? 💖</p>
+    <button onclick="yesClick()">Yes ❤️</button>
+</div>
+
+<script>
+    function yesClick() {
+        alert("Yayyy Sahana 😍 I love you sooo much 💖💫");
+    }
+
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }
+
+    setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
