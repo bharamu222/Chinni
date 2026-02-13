@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Sahana B K ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:linear-gradient(135deg,#ff416c,#ffcc70);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Segoe UI, sans-serif;
+    overflow:hidden;
+    transition:1.5s;
+}
+
+/* START */
+.start{
+    font-size:26px;
+    padding:18px 40px;
+    border:none;
+    border-radius:40px;
+    background:#ff004f;
+    color:white;
+}
+
+/* CARD */
+.card{
+    background:white;
+    padding:32px;
+    border-radius:24px;
+    text-align:center;
+    box-shadow:0 18px 35px rgba(0,0,0,0.3);
+    display:none;
+    animation:pop 0.8s ease;
+}
+
+h1{ color:#ff004f; }
+p{ font-size:21px; }
+
+button{
+    padding:12px 26px;
+    font-size:18px;
+    border:none;
+    border-radius:25px;
+    background:#ff004f;
+    color:white;
+}
+
+/* POPUP */
+.popup{
+    position:fixed;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    background:#fff0f5;
+    padding:28px 36px;
+    border-radius:22px;
+    text-align:center;
+    font-size:24px;
+    color:#b3003b;
+    box-shadow:0 20px 45px rgba(0,0,0,0.4);
+    transition:0.4s;
+}
+.popup.show{ transform:translate(-50%,-50%) scale(1); }
+
+/* FIREWORK DOT */
+.firework{
+    position:absolute;
+    width:6px;height:6px;
+    border-radius:50%;
+    animation:explode 1.3s forwards;
+}
+
+/* NAME */
+.nameFire{
+    position:absolute;
+    left:50%;
+    bottom:20%;
+    transform:translateX(-50%);
+    font-size:36px;
+    font-weight:bold;
+    color:white;
+    text-shadow:0 0 15px gold,0 0 30px hotpink;
+    animation:fly 1.8s ease forwards;
+}
+
+/* ANIMATIONS */
+@keyframes explode{
+    to{ transform:translate(var(--x),var(--y)); opacity:0; }
+}
+@keyframes fly{
+    from{ opacity:0; transform:translate(-50%,40px) scale(0.6); }
+    to{ opacity:1; transform:translate(-50%,-40px) scale(1.1); }
+}
+@keyframes pop{
+    from{ transform:scale(0); }
+    to{ transform:scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<button class="start" onclick="startLove()">Tap to start ❤️</button>
+
+<div class="card" id="card">
+    <h1>Happy Valentine’s Day ❤️</h1>
+    <p>Dear <b>Sahana B K</b></p>
+    <p>Nan jeevanadalli neene most special 😍</p>
+    <p>Will you be my Valentine? 💖</p>
+    <button onclick="yesClick()">Yes ❤️</button>
+</div>
+
+<div class="popup" id="popup">
+    💖 Yayyy Sahana B K 😍<br>
+    I Love You 💕
+</div>
+
+<audio id="song">
+    <source src="perfect.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function startLove(){
+    document.querySelector(".start").style.display="none";
+    document.getElementById("card").style.display="block";
+    document.getElementById("song").play();
+}
+
+function yesClick(){
+    document.getElementById("popup").classList.add("show");
+
+    if(navigator.vibrate){
+        navigator.vibrate([300,200,400]);
+    }
+
+    fireworks();
+    flyingName();
+
+    setTimeout(endScene,6000);
+}
+
+function fireworks(){
+    for(let j=0;j<5;j++){
+        setTimeout(()=>{
+            const x=Math.random()*innerWidth;
+            const y=Math.random()*innerHeight/2;
+            for(let i=0;i<25;i++){
+                let f=document.createElement("div");
+                f.className="firework";
+                f.style.left=x+"px";
+                f.style.top=y+"px";
+                f.style.background=["#ff004f","#ffd700","#00eaff"][Math.floor(Math.random()*3)];
+                f.style.setProperty("--x",(Math.random()*200-100)+"px");
+                f.style.setProperty("--y",(Math.random()*200-100)+"px");
+                document.body.appendChild(f);
+                setTimeout(()=>f.remove(),1300);
+            }
+        },j*300);
+    }
+}
+
+function flyingName(){
+    let n=document.createElement("div");
+    n.className="nameFire";
+    n.innerText="SAHANA B K";
+    document.body.appendChild(n);
+    setTimeout(()=>n.remove(),3000);
+}
+
+function endScene(){
+    document.body.style.opacity="0";
+    setTimeout(()=>{
+        document.body.innerHTML="<h1 style='color:white;margin-top:40vh;'>Thank you ❤️</h1>";
+        document.body.style.opacity="1";
+    },1500);
+}
+</script>
+
+</body>
+</html>
